@@ -10,13 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class PlayersList : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewAdapter: PlayerAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreateView(
@@ -42,9 +39,13 @@ class PlayersList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val dataSet: Array<String> = arrayOf("Name 1","Name 2", "Name 3")
+        val dataSet: Array<Player> = arrayOf(Player("Name 1"),Player("Name 2"), Player("Name 3"))
         viewManager = LinearLayoutManager(context)
-        viewAdapter = PlayerAdapter(dataSet)
-    }
 
+        viewAdapter = PlayerAdapter(dataSet)
+        viewAdapter.onItemClick = {checked, position ->
+            dataSet[position].setSelected(checked)
+            // No UI return
+        }
+    }
 }
