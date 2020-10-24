@@ -9,6 +9,10 @@ object DataBase {
 
     private val players: Array<Player> = Array(11) {Player("Nom $it")}
 
+    private val lPlayerSelected: (Player) -> Boolean = {
+        p: Player -> p.isSelected()
+    }
+
     /**
      * Count the number of players selected
      *
@@ -32,6 +36,19 @@ object DataBase {
      */
     fun changeSelectionPlayer(index: Int, selected: Boolean ) {
         players[index].setSelected(selected)
+    }
+
+    /**
+     * Return the list of selected players
+     */
+    fun getSelectedPlayers(): Array<Player> {
+        val selectedPlayers: MutableList<Player> = mutableListOf<Player>()
+        for(player in players) {
+            if (player.isSelected()) {
+                selectedPlayers.add(player)
+            }
+        }
+        return selectedPlayers.toTypedArray()
     }
 
     fun getPlayers(): Array<Player> {
