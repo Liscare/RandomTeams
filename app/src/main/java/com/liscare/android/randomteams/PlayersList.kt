@@ -50,4 +50,10 @@ class PlayersList() : Fragment() {
             counter.text = DataBase.getCountSelectedPlayers().toString()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        counter.text = DataBase.getCountSelectedPlayers().toString()
+        viewAdapter.notifyDataSetChanged()
+    }
 }
