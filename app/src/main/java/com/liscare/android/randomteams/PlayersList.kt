@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class PlayersList : Fragment() {
+class PlayersList() : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var counter: TextView
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -30,22 +32,22 @@ class PlayersList : Fragment() {
             findNavController().navigate(R.id.action_playersList_to_home)
         }
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.my_recycler_view).apply {
+        recyclerView = view.findViewById<RecyclerView>(R.id.players_list).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
         }
+        counter = view.findViewById(R.id.text_counter)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val dataSet: Array<Player> = arrayOf(Player("Name 1"),Player("Name 2"), Player("Name 3"))
         viewManager = LinearLayoutManager(context)
 
-        viewAdapter = PlayerAdapter(dataSet)
+        viewAdapter = PlayerAdapter(DataBase.getPlayers())
         viewAdapter.onItemClick = {checked, position ->
-            dataSet[position].setSelected(checked)
-            // No UI return
+            DataBase.changeSelectionPlayer(position, checked)
+            counter.text = DataBase.getCountSelectedPlayers().toString()
         }
     }
 }
