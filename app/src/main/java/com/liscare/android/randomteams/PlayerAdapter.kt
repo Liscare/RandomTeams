@@ -6,6 +6,8 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 
+import com.liscare.android.randomteams.R.id.checkBox
+
 class PlayerAdapter(private val dataSet: Array<Player>) :
     RecyclerView.Adapter<PlayerAdapter.PlayerHolder>() {
 
@@ -14,8 +16,9 @@ class PlayerAdapter(private val dataSet: Array<Player>) :
     inner class PlayerHolder(val linearLayout: LinearLayout) : RecyclerView.ViewHolder(linearLayout) {
 
         init {
-            itemView.findViewById<CheckBox>(R.id.checkBox).setOnClickListener {
-                onItemClick?.invoke(itemView.findViewById<CheckBox>(R.id.checkBox).isChecked ,adapterPosition)
+            itemView.findViewById<CheckBox>(checkBox).setOnClickListener {
+                onItemClick?.invoke(itemView.findViewById<CheckBox>(checkBox).isChecked ,adapterPosition)
+                dataSet[adapterPosition].setSelected(itemView.findViewById<CheckBox>(checkBox).isChecked)
             }
         }
     }
@@ -28,7 +31,8 @@ class PlayerAdapter(private val dataSet: Array<Player>) :
     }
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
-        holder.linearLayout.findViewById<CheckBox>(R.id.checkBox).text = dataSet[position].getName()
+        holder.linearLayout.findViewById<CheckBox>(checkBox).text = dataSet[position].getName()
+        holder.linearLayout.findViewById<CheckBox>(checkBox).isChecked = dataSet[position].isSelected()
     }
 
     override fun getItemCount() = dataSet.size
