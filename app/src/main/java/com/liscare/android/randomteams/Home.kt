@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * Default fragment
+ * Display the random teams
+ *
+ * @author Lilian Braud
  */
 class Home : Fragment() {
 
@@ -44,7 +47,6 @@ class Home : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewManager = LinearLayoutManager(context)
-
         viewAdapter = PlayerInGameAdapter(emptyArray())
     }
 
@@ -56,6 +58,7 @@ class Home : Fragment() {
 
     /**
      * Assign a random number for each selected player
+     * @see Set.random
      */
     private fun randPlayers(): Array<Player> {
         val selectedPlayers = DataBase.getSelectedPlayers()

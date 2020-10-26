@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -33,9 +34,9 @@ class EditPlayerFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        playerViewModel.selectedPlayer.observe(viewLifecycleOwner, { item: Player ->
+        playerViewModel.selectedPlayer.observe(viewLifecycleOwner) { item: Player ->
             view.findViewById<EditText>(R.id.edit_name).setText(item.getName())
-        })
+        }
 
         view.findViewById<Button>(R.id.save_player).setOnClickListener {
             Snackbar.make(it, "Do nothing", Snackbar.LENGTH_LONG).show()
