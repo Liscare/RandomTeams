@@ -7,16 +7,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class PlayersList() : Fragment() {
+/**
+ * Fragment displaying all players
+ * Those players are selectable to create random teams.
+ *
+ * @author Lilian Braud
+ */
+class PlayersList() : Fragment(), View.OnClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var counter: TextView
+
+    private val model: PlayerViewModel by activityViewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +48,12 @@ class PlayersList() : Fragment() {
             adapter = viewAdapter
         }
         counter = view.findViewById(R.id.text_counter)
+
+        // Go to EditPlayerFragment
+        view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            model.select(Player())
+            findNavController().navigate(R.id.action_PlayersList_to_editPlayerFragment)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +70,10 @@ class PlayersList() : Fragment() {
     override fun onResume() {
         super.onResume()
         counter.text = DataBase.getCountSelectedPlayers().toString()
+        viewAdapter.notifyDataSetChanged()
+    }
+
+    override fun onClick(v: View?) {
         viewAdapter.notifyDataSetChanged()
     }
 }
