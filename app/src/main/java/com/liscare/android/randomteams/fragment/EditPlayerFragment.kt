@@ -1,4 +1,4 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
+import com.liscare.android.randomteams.R
+import com.liscare.android.randomteams.model.Player
+import com.liscare.android.randomteams.viewmodel.PlayerViewModel
 
 /**
  * Fragment to edit a player

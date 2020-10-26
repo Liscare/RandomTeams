@@ -1,11 +1,13 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.R.id.checkBox
+import com.liscare.android.randomteams.model.Player
 
 /**
  * Player adapter for the players list
@@ -32,7 +34,7 @@ class PlayerAdapter(private val dataSet: Array<Player>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): PlayerAdapter.PlayerHolder {
+                                    viewType: Int): PlayerHolder {
         val linearLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.players_list_line, parent, false) as LinearLayout
         return PlayerHolder(linearLayout)

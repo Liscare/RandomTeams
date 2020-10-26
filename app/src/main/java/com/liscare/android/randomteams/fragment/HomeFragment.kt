@@ -1,4 +1,4 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.liscare.android.randomteams.DataBase
+import com.liscare.android.randomteams.R
+import com.liscare.android.randomteams.adapter.PlayerInGameAdapter
+import com.liscare.android.randomteams.model.Player
 
 /**
  * Default fragment
@@ -16,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * @author Lilian Braud
  */
-class Home : Fragment() {
+class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerInGameAdapter
@@ -47,7 +51,10 @@ class Home : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewManager = LinearLayoutManager(context)
-        viewAdapter = PlayerInGameAdapter(emptyArray())
+        viewAdapter =
+            PlayerInGameAdapter(
+                emptyArray()
+            )
     }
 
     override fun onResume() {
@@ -61,7 +68,8 @@ class Home : Fragment() {
      * @see Set.random
      */
     private fun randPlayers(): Array<Player> {
-        val selectedPlayers = DataBase.getSelectedPlayers()
+        val selectedPlayers =
+            DataBase.getSelectedPlayers()
         val randomPlayers = mutableSetOf<Player>()
         while (randomPlayers.size != selectedPlayers.size) {
             randomPlayers.add(selectedPlayers.random())

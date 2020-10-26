@@ -1,7 +1,8 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.liscare.android.randomteams.model.Player
 
 /**
  * View Model for one player

@@ -1,4 +1,4 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.model
 
 /**
  * Player model

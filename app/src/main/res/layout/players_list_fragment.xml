@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_players_list"
-    tools:context=".PlayersList">
+    tools:context=".fragment.PlayersListFragment">
 
     <Button
         android:id="@+id/button_second"

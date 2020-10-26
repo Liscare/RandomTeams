@@ -1,4 +1,4 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.liscare.android.randomteams.DataBase
+import com.liscare.android.randomteams.R
+import com.liscare.android.randomteams.adapter.PlayerAdapter
+import com.liscare.android.randomteams.model.Player
+import com.liscare.android.randomteams.viewmodel.PlayerViewModel
 
 /**
  * Fragment displaying all players
@@ -19,7 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  *
  * @author Lilian Braud
  */
-class PlayersList() : Fragment(), View.OnClickListener {
+class PlayersListFragment() : Fragment(), View.OnClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerAdapter
@@ -61,17 +66,23 @@ class PlayersList() : Fragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         viewManager = LinearLayoutManager(context)
 
-        viewAdapter = PlayerAdapter(DataBase.getPlayers())
+        viewAdapter =
+            PlayerAdapter(DataBase.getPlayers())
         // Count selected players on item click
         viewAdapter.onItemClick = {checked, position ->
-            DataBase.changeSelectionPlayer(position, checked)
-            counter.text = DataBase.getCountSelectedPlayers().toString()
+            DataBase.changeSelectionPlayer(
+                position,
+                checked
+            )
+            counter.text = DataBase.getCountSelectedPlayers()
+                .toString()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        counter.text = DataBase.getCountSelectedPlayers().toString()
+        counter.text = DataBase.getCountSelectedPlayers()
+            .toString()
         viewAdapter.notifyDataSetChanged()
     }
 
