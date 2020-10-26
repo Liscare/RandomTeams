@@ -38,6 +38,7 @@ class PlayersList() : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Go to Home
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_playersList_to_home)
         }
@@ -61,6 +62,7 @@ class PlayersList() : Fragment(), View.OnClickListener {
         viewManager = LinearLayoutManager(context)
 
         viewAdapter = PlayerAdapter(DataBase.getPlayers())
+        // Count selected players on item click
         viewAdapter.onItemClick = {checked, position ->
             DataBase.changeSelectionPlayer(position, checked)
             counter.text = DataBase.getCountSelectedPlayers().toString()

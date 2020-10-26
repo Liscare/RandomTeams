@@ -9,10 +9,6 @@ object DataBase {
 
     private val players: Array<Player> = Array(11) {Player("Nom $it")}
 
-    private val lPlayerSelected: (Player) -> Boolean = {
-        p: Player -> p.isSelected()
-    }
-
     /**
      * Count the number of players selected
      *
