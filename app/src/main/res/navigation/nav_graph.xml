@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Home"
-        android:name="com.liscare.android.randomteams.Home"
+        android:name="com.liscare.android.randomteams.fragment.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/home_fragment">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/PlayersList"
-        android:name="com.liscare.android.randomteams.PlayersList"
+        android:name="com.liscare.android.randomteams.fragment.PlayersListFragment"
         android:label="@string/players_list_fragment_label"
         tools:layout="@layout/players_list_fragment">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/editPlayerFragment"
-        android:name="com.liscare.android.randomteams.EditPlayerFragment"
+        android:name="com.liscare.android.randomteams.fragment.EditPlayerFragment"
         android:label="edit_player_fragment"
         tools:layout="@layout/edit_player_fragment" >
         <action

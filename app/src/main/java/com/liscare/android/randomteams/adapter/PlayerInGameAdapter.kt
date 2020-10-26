@@ -1,10 +1,12 @@
-package com.liscare.android.randomteams
+package com.liscare.android.randomteams.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.liscare.android.randomteams.R
+import com.liscare.android.randomteams.model.Player
 
 /**
  * Adapter for the list of players in game
@@ -19,7 +21,7 @@ class PlayerInGameAdapter(private var dataSet: Array<Player>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): PlayerInGameAdapter.PlayerHolder {
+                                    viewType: Int): PlayerHolder {
         val linearLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.player_game_line, parent, false) as LinearLayout
         return PlayerHolder(linearLayout)

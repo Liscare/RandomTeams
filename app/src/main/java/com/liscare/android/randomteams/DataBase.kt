@@ -1,5 +1,7 @@
 package com.liscare.android.randomteams
 
+import com.liscare.android.randomteams.model.Player
+
 /**
  * Singleton for database composed of all players
  *
@@ -7,7 +9,9 @@ package com.liscare.android.randomteams
  */
 object DataBase {
 
-    private val players: Array<Player> = Array(11) {Player("Nom $it")}
+    private val players: Array<Player> = Array(11) {
+        Player("Nom $it")
+    }
 
     /**
      * Count the number of players selected
