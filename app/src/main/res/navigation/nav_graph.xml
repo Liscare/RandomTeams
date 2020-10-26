@@ -24,5 +24,17 @@
         <action
             android:id="@+id/action_playersList_to_home"
             app:destination="@id/Home" />
+        <action
+            android:id="@+id/action_PlayersList_to_editPlayerFragment"
+            app:destination="@id/editPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPlayerFragment"
+        android:name="com.liscare.android.randomteams.EditPlayerFragment"
+        android:label="edit_player_fragment"
+        tools:layout="@layout/edit_player_fragment" >
+        <action
+            android:id="@+id/action_editPlayerFragment_to_PlayersList"
+            app:destination="@id/PlayersList" />
     </fragment>
 </navigation>
