@@ -9,10 +9,11 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
-import com.google.android.material.snackbar.Snackbar
+import androidx.navigation.fragment.findNavController
 import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.model.Player
 import com.liscare.android.randomteams.viewmodel.PlayerViewModel
+import com.liscare.android.randomteams.viewmodel.PlayersListViewModel
 
 /**
  * Fragment to edit a player
@@ -24,6 +25,9 @@ class EditPlayerFragment : Fragment() {
 
     /** Containing the current player */
     private val playerViewModel: PlayerViewModel by activityViewModels()
+
+    /** Containing all players */
+    private val playersListModel: PlayersListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +45,11 @@ class EditPlayerFragment : Fragment() {
             view.findViewById<EditText>(R.id.edit_name).setText(item.getName())
         }
 
+        // Save player and go to PlayersList
         view.findViewById<Button>(R.id.save_player).setOnClickListener {
-            Snackbar.make(it, "Do nothing", Snackbar.LENGTH_LONG).show()
+            playerViewModel.selectedPlayer.value?.setName(view.findViewById<EditText>(R.id.edit_name).text.toString())
+            playersListModel.add(playerViewModel.selectedPlayer.value ?: Player())
+            findNavController().navigate(R.id.action_editPlayerFragment_to_PlayersList)
         }
     }
 }

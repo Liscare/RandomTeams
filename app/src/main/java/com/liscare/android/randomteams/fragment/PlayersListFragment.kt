@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.adapter.PlayerAdapter
 import com.liscare.android.randomteams.model.Player
 import com.liscare.android.randomteams.viewmodel.PlayerViewModel
+import com.liscare.android.randomteams.viewmodel.PlayersListViewModel
 
 /**
  * Fragment displaying all players
@@ -31,7 +33,9 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var counter: TextView
 
-    private val model: PlayerViewModel by activityViewModels()
+    private val playerModel: PlayerViewModel by activityViewModels()
+
+    private val playersListModel: PlayersListViewModel by activityViewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -57,8 +61,13 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
 
         // Go to EditPlayerFragment
         view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            model.select(Player())
+            playerModel.select(Player())
             findNavController().navigate(R.id.action_PlayersList_to_editPlayerFragment)
+        }
+
+        // Players list
+        playersListModel.players.observe(viewLifecycleOwner) {
+            viewAdapter.notifyDataSetChanged()
         }
     }
 
@@ -67,7 +76,7 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
         viewManager = LinearLayoutManager(context)
 
         viewAdapter =
-            PlayerAdapter(DataBase.getPlayers())
+            PlayerAdapter(playersListModel.get().toTypedArray())
         // Count selected players on item click
         viewAdapter.onItemClick = {checked, position ->
             DataBase.changeSelectionPlayer(
