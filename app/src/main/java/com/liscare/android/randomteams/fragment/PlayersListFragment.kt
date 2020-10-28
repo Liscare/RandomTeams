@@ -31,10 +31,9 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var counter: TextView
+    private lateinit var counterView: TextView
 
     private val playerModel: PlayerViewModel by activityViewModels()
-
     private val playersListModel: PlayersListViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -52,12 +51,17 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
             findNavController().navigate(R.id.action_playersList_to_home)
         }
 
+        viewManager = LinearLayoutManager(context)
+
+        initAdapter()
+
         recyclerView = view.findViewById<RecyclerView>(R.id.players_list).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
         }
-        counter = view.findViewById(R.id.text_counter)
+
+        counterView = view.findViewById(R.id.text_counter)
 
         // Go to EditPlayerFragment
         view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
@@ -71,26 +75,23 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewManager = LinearLayoutManager(context)
-
+    private fun initAdapter() {
         viewAdapter =
             PlayerAdapter(playersListModel.get().toTypedArray())
         // Count selected players on item click
-        viewAdapter.onItemClick = {checked, position ->
+        viewAdapter.onItemClick = { checked, position ->
             DataBase.changeSelectionPlayer(
                 position,
                 checked
             )
-            counter.text = DataBase.getCountSelectedPlayers()
+            counterView.text = DataBase.getCountSelectedPlayers()
                 .toString()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        counter.text = DataBase.getCountSelectedPlayers()
+        counterView.text = DataBase.getCountSelectedPlayers()
             .toString()
         viewAdapter.notifyDataSetChanged()
     }
