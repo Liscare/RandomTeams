@@ -12,6 +12,10 @@ class Player (private var name: String = "", private var selected: Boolean = fal
         return name
     }
 
+    fun setName(name: String) {
+        this.name = name
+    }
+
     fun isSelected(): Boolean {
         return selected
     }
