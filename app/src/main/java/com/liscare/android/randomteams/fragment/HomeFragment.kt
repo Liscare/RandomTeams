@@ -41,20 +41,17 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_home_to_playersList)
         }
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.selected_players).apply {
-            layoutManager = viewManager
-            adapter = viewAdapter
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+        // init RecyclerView
         viewManager = LinearLayoutManager(context)
         viewAdapter =
             PlayerInGameAdapter(
                 emptyArray()
             )
+
+        recyclerView = view.findViewById<RecyclerView>(R.id.selected_players).apply {
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
     }
 
     override fun onResume() {
