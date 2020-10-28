@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.liscare.android.randomteams.DataBase
 import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.adapter.PlayerInGameAdapter
 import com.liscare.android.randomteams.model.Player
+import com.liscare.android.randomteams.viewmodel.PlayersListViewModel
 
 /**
  * Default fragment
@@ -25,6 +26,8 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerInGameAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
+
+    private val playersListModel: PlayersListViewModel by activityViewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -65,12 +68,24 @@ class HomeFragment : Fragment() {
      * @see Set.random
      */
     private fun randPlayers(): Array<Player> {
-        val selectedPlayers =
-            DataBase.getSelectedPlayers()
+        val selectedPlayers = getSelectedPlayers()
         val randomPlayers = mutableSetOf<Player>()
         while (randomPlayers.size != selectedPlayers.size) {
             randomPlayers.add(selectedPlayers.random())
         }
         return randomPlayers.toTypedArray()
+    }
+
+    /**
+     * Return the list of selected players
+     */
+    private fun getSelectedPlayers(): Array<Player> {
+        val selectedPlayers: MutableList<Player> = mutableListOf<Player>()
+        for(player in playersListModel.players.value ?: return emptyArray()) {
+            if (player.isSelected()) {
+                selectedPlayers.add(player)
+            }
+        }
+        return selectedPlayers.toTypedArray()
     }
 }
