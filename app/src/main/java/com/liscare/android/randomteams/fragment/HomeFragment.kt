@@ -81,7 +81,7 @@ class HomeFragment : Fragment() {
      */
     private fun getSelectedPlayers(): Array<Player> {
         val selectedPlayers: MutableList<Player> = mutableListOf<Player>()
-        for(player in playersListModel.players.value ?: return emptyArray()) {
+        for(player in playersListModel.get()) {
             if (player.isSelected()) {
                 selectedPlayers.add(player)
             }

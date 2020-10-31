@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.liscare.android.randomteams.DataBase
 import com.liscare.android.randomteams.model.Player
+import com.liscare.android.randomteams.model.PlayersList
 
 /**
  * View model for all available players (aka players list)
@@ -17,13 +18,13 @@ class PlayersListViewModel : ViewModel() {
      * List of available players (selected or not)
      * @see MutableLiveData
      */
-    var players = MutableLiveData<MutableList<Player>>()
+    var players = MutableLiveData<PlayersList>()
 
     /**
      * Get the entire list from Database singleton
      */
     init {
-        players.value = DataBase.getPlayers().toMutableList()
+        players.value = DataBase.getPlayersList()
     }
 
     /**
@@ -32,14 +33,14 @@ class PlayersListViewModel : ViewModel() {
      * @param player New player in the list
      */
     fun add(player: Player) {
-        players.value?.add(player)
+        players.value?.getPlayers()?.add(player)
     }
 
     fun get(position: Int): Player? {
-        return players.value?.get(position)
+        return players.value?.getPlayers()?.get(position)
     }
 
     fun get(): MutableList<Player> {
-        return players.value ?: emptyList<Player>().toMutableList()
+        return players.value?.getPlayers() ?: emptyList<Player>().toMutableList()
     }
 }

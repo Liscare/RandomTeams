@@ -80,15 +80,15 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
             PlayerAdapter(playersListModel.get().toTypedArray())
         // Count selected players on item click
         viewAdapter.onItemClick = { checked, position ->
-            playersListModel.players.value?.get(position)?.setSelected(checked)
-            counterView.text = DataBase.getCountSelectedPlayers(playersListModel.players.value?.toList())
+            playersListModel.get(position)?.setSelected(checked)
+            counterView.text = DataBase.getCountSelectedPlayers(playersListModel.get().toList())
                 .toString()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        counterView.text = DataBase.getCountSelectedPlayers(playersListModel.players.value?.toList())
+        counterView.text = DataBase.getCountSelectedPlayers(playersListModel.get().toList())
             .toString()
         viewAdapter.notifyDataSetChanged()
     }
