@@ -1,12 +1,10 @@
 package com.liscare.android.randomteams
 
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.FragmentActivity
 import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 /**
@@ -17,6 +15,8 @@ import kotlinx.serialization.json.Json
  * @see Database
  */
 class MainActivity : FragmentActivity() {
+
+    private val fileName: String = "my_players_group.json"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +30,6 @@ class MainActivity : FragmentActivity() {
             applicationContext.openFileInput("my_players_group.json").bufferedReader().useLines {
                 Database.setPlayersList(Json.decodeFromString(it.joinToString("")))
             }
-        } else { // Create an empty file
-            applicationContext.openFileOutput("my_players_group.json", Context.MODE_PRIVATE)
-                .use {
-                    it.write(Json.encodeToString(Database.getPlayersList()).toByteArray())
-                }
         }
     }
 
