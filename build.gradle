@@ -14,6 +14,11 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
+}
+
 allprojects {
     repositories {
         google()
@@ -21,6 +26,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+task clean1(type: Delete) {
     delete rootProject.buildDir
 }
