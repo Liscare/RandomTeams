@@ -17,6 +17,7 @@ import com.liscare.android.randomteams.DataBase
 import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.adapter.PlayerAdapter
 import com.liscare.android.randomteams.model.Player
+import com.liscare.android.randomteams.model.PlayersList
 import com.liscare.android.randomteams.viewmodel.PlayerViewModel
 import com.liscare.android.randomteams.viewmodel.PlayersListViewModel
 
@@ -72,6 +73,8 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
         // Players list
         playersListModel.players.observe(viewLifecycleOwner) {
             viewAdapter.notifyDataSetChanged()
+            DataBase.setPlayersList(playersListModel.players.value ?: PlayersList())
+            DataBase.save()
         }
     }
 
