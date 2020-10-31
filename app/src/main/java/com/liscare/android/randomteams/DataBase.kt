@@ -1,8 +1,11 @@
 package com.liscare.android.randomteams
 
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import com.liscare.android.randomteams.model.Player
 import com.liscare.android.randomteams.model.PlayersList
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 /**
  * Singleton for database composed of all players
@@ -29,6 +32,12 @@ object DataBase {
             }
         }
         return count
+    }
+
+    fun save() {
+        context.openFileOutput("my_players_group.json", FragmentActivity.MODE_PRIVATE).use {
+            it.write(Json.encodeToString(getPlayersList()).toByteArray())
+        }
     }
 
     fun setPlayersList(playersList: PlayersList) {
