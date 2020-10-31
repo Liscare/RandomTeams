@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.liscare.android.randomteams.DataBase
+import com.liscare.android.randomteams.Database
 import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.adapter.PlayerAdapter
 import com.liscare.android.randomteams.model.Player
@@ -73,8 +73,8 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
         // Players list
         playersListModel.players.observe(viewLifecycleOwner) {
             viewAdapter.notifyDataSetChanged()
-            DataBase.setPlayersList(playersListModel.players.value ?: PlayersList())
-            DataBase.save()
+            Database.setPlayersList(playersListModel.players.value ?: PlayersList())
+            Database.save()
         }
     }
 
@@ -84,14 +84,14 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
         // Count selected players on item click
         viewAdapter.onItemClick = { checked, position ->
             playersListModel.get(position)?.setSelected(checked)
-            counterView.text = DataBase.getCountSelectedPlayers(playersListModel.get().toList())
+            counterView.text = Database.getCountSelectedPlayers(playersListModel.get().toList())
                 .toString()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        counterView.text = DataBase.getCountSelectedPlayers(playersListModel.get().toList())
+        counterView.text = Database.getCountSelectedPlayers(playersListModel.get().toList())
             .toString()
         viewAdapter.notifyDataSetChanged()
     }

@@ -12,7 +12,7 @@ import kotlinx.serialization.json.Json
  *
  * @author Lilian Braud
  */
-object DataBase {
+object Database {
 
     private var playersList: PlayersList = PlayersList()
 
