@@ -14,7 +14,7 @@ import kotlinx.serialization.json.Json
  * Innit the Database
  *
  * @author Lilian Braud
- * @see DataBase
+ * @see Database
  */
 class MainActivity : FragmentActivity() {
 
@@ -26,14 +26,14 @@ class MainActivity : FragmentActivity() {
     override fun onStart() {
         super.onStart()
         if (applicationContext.fileList().contains("my_players_group.json")) { // Read saved players
-            DataBase.setContext(applicationContext)
+            Database.setContext(applicationContext)
             applicationContext.openFileInput("my_players_group.json").bufferedReader().useLines {
-                DataBase.setPlayersList(Json.decodeFromString(it.joinToString("")))
+                Database.setPlayersList(Json.decodeFromString(it.joinToString("")))
             }
         } else { // Create an empty file
             applicationContext.openFileOutput("my_players_group.json", Context.MODE_PRIVATE)
                 .use {
-                    it.write(Json.encodeToString(DataBase.getPlayersList()).toByteArray())
+                    it.write(Json.encodeToString(Database.getPlayersList()).toByteArray())
                 }
         }
     }
