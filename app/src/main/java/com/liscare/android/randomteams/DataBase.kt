@@ -1,6 +1,8 @@
 package com.liscare.android.randomteams
 
+import android.content.Context
 import com.liscare.android.randomteams.model.Player
+import com.liscare.android.randomteams.model.PlayersList
 
 /**
  * Singleton for database composed of all players
@@ -9,9 +11,9 @@ import com.liscare.android.randomteams.model.Player
  */
 object DataBase {
 
-    private val players: Array<Player> = Array(11) {
-        Player("Nom $it")
-    }
+    private var playersList: PlayersList = PlayersList()
+
+    private lateinit var context: Context;
 
     /**
      * Count the number of players selected
@@ -29,7 +31,19 @@ object DataBase {
         return count
     }
 
-    fun getPlayers(): Array<Player> {
-        return players
+    fun setPlayersList(playersList: PlayersList) {
+        this.playersList = playersList
+    }
+
+    fun getPlayersList(): PlayersList {
+        return playersList
+    }
+
+    fun getPlayers(): List<Player> {
+        return playersList.getPlayers()
+    }
+
+    fun setContext(context: Context) {
+        this.context = context
     }
 }
