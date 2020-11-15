@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.FragmentActivity
+import com.liscare.android.randomteams.dao.PlayersDAO
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 /**
  * Main activity
- * Innit the Database
+ * Init the Database
  *
  * @author Lilian Braud
  * @see Database
@@ -21,14 +22,12 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
 
-    override fun onStart() {
-        super.onStart()
-        if (applicationContext.fileList().contains("my_players_group.json")) { // Read saved players
+        // Read saved players
+        if (applicationContext.fileList().contains(fileName)) {
             Database.setContext(applicationContext)
-            applicationContext.openFileInput("my_players_group.json").bufferedReader().useLines {
-                Database.setPlayersList(Json.decodeFromString(it.joinToString("")))
+            applicationContext.openFileInput(fileName).bufferedReader().useLines {
+                PlayersDAO.setPlayersList(Json.decodeFromString(it.joinToString("")))
             }
         }
     }
