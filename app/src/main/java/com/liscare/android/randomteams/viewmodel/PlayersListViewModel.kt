@@ -2,7 +2,7 @@ package com.liscare.android.randomteams.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.liscare.android.randomteams.Database
+import com.liscare.android.randomteams.dao.PlayersDAO
 import com.liscare.android.randomteams.model.Player
 import com.liscare.android.randomteams.model.PlayersList
 
@@ -24,7 +24,7 @@ class PlayersListViewModel : ViewModel() {
      * Get the entire list from Database singleton
      */
     init {
-        players.value = Database.getPlayersList()
+        players.value = PlayersDAO.getPlayersList()
     }
 
     /**

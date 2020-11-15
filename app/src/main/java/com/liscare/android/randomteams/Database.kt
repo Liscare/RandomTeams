@@ -2,7 +2,6 @@ package com.liscare.android.randomteams
 
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
-import com.liscare.android.randomteams.model.Player
 import com.liscare.android.randomteams.model.PlayersList
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -14,28 +13,16 @@ import kotlinx.serialization.json.Json
  */
 object Database {
 
+    private const val FILE_NAME: String = "my_players_group.json"
+
+    /** List of players, empty by default */
     private var playersList: PlayersList = PlayersList()
 
+    /** Activity context */
     private lateinit var context: Context;
 
-    /**
-     * Count the number of players selected
-     *
-     * @param players List of players
-     * @return Number of players selected
-     */
-    fun getCountSelectedPlayers(players: List<Player>?): Int {
-        var count = 0
-        for (playerInGame in players ?: return 0) {
-            if (playerInGame.isSelected()) {
-                count++
-            }
-        }
-        return count
-    }
-
-    fun save() {
-        context.openFileOutput("my_players_group.json", FragmentActivity.MODE_PRIVATE).use {
+    fun commit() {
+        context.openFileOutput(FILE_NAME, FragmentActivity.MODE_PRIVATE).use {
             it.write(Json.encodeToString(getPlayersList()).toByteArray())
         }
     }
@@ -46,10 +33,6 @@ object Database {
 
     fun getPlayersList(): PlayersList {
         return playersList
-    }
-
-    fun getPlayers(): List<Player> {
-        return playersList.getPlayers()
     }
 
     fun setContext(context: Context) {
