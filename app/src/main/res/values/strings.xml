@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RandomTeams</string>
+    <string name="app_name">Team Rolling</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="home_fragment_label">Home</string>
@@ -7,8 +7,10 @@
     <string name="choose_players">Choose players</string>
     <string name="draw">Draw Lots</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
-    <string name="counter_default">0</string>
+    <string name="counter_default" translatable="false">0</string>
+    <string name="number_selected_players">Number of selected players</string>
+    <string name="add_player">Add player</string>
+    <string name="player_name">Player Name</string>
+    <string name="player_name_hint">Jorge</string>
+    <string name="create_player">Save</string>
 </resources>
