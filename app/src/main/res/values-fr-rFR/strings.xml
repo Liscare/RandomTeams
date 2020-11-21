@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Team Rolling</string>
+    <string name="player_name">Nom du joueur</string>
+    <string name="player_name_hint">Jean</string>
+    <string name="create_player">Sauvegarder</string>
+    <string name="add_player">Ajouter un joueur</string>
+    <string name="number_selected_players">Nombre de joueurs sélectionnés</string>
+    <string name="draw">Tirer au sort</string>
+    <string name="choose_players">Sélectionnez vos joueurs</string>
+    <string name="players_list_fragment_label">Liste des joueurs</string>
+    <string name="home_fragment_label">Accueil</string>
+</resources>
