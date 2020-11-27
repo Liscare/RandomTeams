@@ -13,4 +13,7 @@
     <string name="player_name">Player Name</string>
     <string name="player_name_hint">Jorge</string>
     <string name="create_player">Save</string>
+    <string name="number_player_default" translatable="false">0</string>
+    <string name="header_number">N°</string>
+    <string name="header_player_name">@string/player_name</string>
 </resources>

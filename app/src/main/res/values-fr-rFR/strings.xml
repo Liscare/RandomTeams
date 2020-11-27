@@ -10,4 +10,6 @@
     <string name="choose_players">Sélectionnez vos joueurs</string>
     <string name="players_list_fragment_label">Liste des joueurs</string>
     <string name="home_fragment_label">Accueil</string>
+    <string name="header_number">N°</string>
+    <string name="header_player_name">@string/player_name</string>
 </resources>

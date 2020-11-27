@@ -10,4 +10,6 @@
     <string name="player_name">Nombre del jugador</string>
     <string name="player_name_hint">Juan</string>
     <string name="create_player">Salvaguardar</string>
+    <string name="header_number">N°</string>
+    <string name="header_player_name">@string/player_name</string>
 </resources>
