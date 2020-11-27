@@ -5,13 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/selected_players"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_sides"
         android:layout_marginTop="@dimen/margin_sides"
-        android:layout_marginRight="@dimen/margin_sides" />
+        android:layout_marginRight="@dimen/margin_sides"
+        android:orientation="vertical" >
+
+        <include
+            layout="@layout/player_game_line_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selected_players"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
