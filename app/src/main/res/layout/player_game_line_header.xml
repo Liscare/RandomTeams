@@ -10,16 +10,12 @@
         android:id="@+id/number_player_header"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
         android:text="@string/header_number"
-        android:textSize="@dimen/text_normal"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/player_in_game_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="@string/header_player_name"
-        android:textSize="@dimen/text_normal"/>
+        android:text="@string/header_player_name"/>
 </LinearLayout>
