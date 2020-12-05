@@ -35,7 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/margin_sides"
-            android:text="@string/choose_players" />
+            android:paddingHorizontal="@dimen/margin_sides"
+            android:paddingVertical="@dimen/margin_btn_vertical"
+            android:text="@string/choose_players"/>
     </RelativeLayout>
 
 </RelativeLayout>

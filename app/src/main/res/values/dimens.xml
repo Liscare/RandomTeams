@@ -2,5 +2,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="main_text">20sp</dimen>
     <dimen name="margin_sides">10sp</dimen>
+    <dimen name="margin_btn_vertical">3sp</dimen>
     <dimen name="text_normal">20sp</dimen>
 </resources>
