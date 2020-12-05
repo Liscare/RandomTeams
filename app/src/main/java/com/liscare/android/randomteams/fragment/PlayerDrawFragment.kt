@@ -21,7 +21,7 @@ import com.liscare.android.randomteams.viewmodel.PlayersListViewModel
  *
  * @author Lilian Braud
  */
-class HomeFragment : Fragment() {
+class PlayerDrawFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PlayerInGameAdapter
