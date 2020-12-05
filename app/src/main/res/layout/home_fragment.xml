@@ -6,7 +6,7 @@
     tools:context=".fragment.HomeFragment">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_sides"
         android:layout_marginTop="@dimen/margin_sides"
@@ -15,7 +15,7 @@
 
         <include
             layout="@layout/player_game_line_header"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
