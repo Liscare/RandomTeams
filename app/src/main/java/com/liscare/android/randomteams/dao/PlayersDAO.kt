@@ -21,5 +21,6 @@ object PlayersDAO {
 
     fun setPlayersList(playersList: PlayersList) {
         Database.setPlayersList(playersList)
+        Database.commit()
     }
 }
