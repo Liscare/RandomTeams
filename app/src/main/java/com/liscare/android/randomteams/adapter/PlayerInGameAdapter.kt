@@ -1,6 +1,7 @@
 package com.liscare.android.randomteams.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -32,6 +33,9 @@ class PlayerInGameAdapter(private var dataSet: Array<Player>) :
             // A player number start at 1, not at 0 as position
             holder.linearLayout.findViewById<TextView>(R.id.number_player).text = (position + 1).toString()
             holder.linearLayout.findViewById<TextView>(R.id.player_in_game).text = dataSet[position].getName()
+            if ((position +1) % 2 == 0) {
+                holder.linearLayout.findViewById<View>(R.id.game_divider).visibility = View.VISIBLE
+            }
         }
     }
 
