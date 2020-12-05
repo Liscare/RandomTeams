@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/Home">
+    app:startDestination="@id/PlayersList">
 
     <fragment
-        android:id="@+id/Home"
-        android:name="com.liscare.android.randomteams.fragment.HomeFragment"
+        android:id="@+id/PlayerDraw"
+        android:name="com.liscare.android.randomteams.fragment.PlayerDrawFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/home_fragment">
 
@@ -23,7 +23,7 @@
 
         <action
             android:id="@+id/action_playersList_to_home"
-            app:destination="@id/Home" />
+            app:destination="@id/PlayerDraw" />
         <action
             android:id="@+id/action_PlayersList_to_editPlayerFragment"
             app:destination="@id/editPlayerFragment" />
@@ -32,7 +32,7 @@
         android:id="@+id/editPlayerFragment"
         android:name="com.liscare.android.randomteams.fragment.EditPlayerFragment"
         android:label="edit_player_fragment"
-        tools:layout="@layout/edit_player_fragment" >
+        tools:layout="@layout/edit_player_fragment">
         <action
             android:id="@+id/action_editPlayerFragment_to_PlayersList"
             app:destination="@id/PlayersList" />
