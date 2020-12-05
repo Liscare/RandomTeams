@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,10 +70,10 @@ class PlayersListFragment() : Fragment(), View.OnClickListener {
         }
 
         // Players list
-        playersListModel.players.observe(viewLifecycleOwner) {
+        playersListModel.players.observe(viewLifecycleOwner, {
             viewAdapter.notifyDataSetChanged()
             PlayersDAO.setPlayersList(playersListModel.players.value ?: PlayersList())
-        }
+        })
     }
 
     private fun initAdapter() {

@@ -1,6 +1,8 @@
 package com.liscare.android.randomteams.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.model.Player
@@ -41,15 +42,35 @@ class EditPlayerFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        playerViewModel.selectedPlayer.observe(viewLifecycleOwner) { item: Player ->
-            view.findViewById<EditText>(R.id.edit_name).setText(item.getName())
-        }
+
+        val nameEditText = view.findViewById<EditText>(R.id.edit_name)
+        val savePlayerButton = view.findViewById<Button>(R.id.save_player)
+
+        playerViewModel.selectedPlayer.observe(viewLifecycleOwner, { item: Player ->
+            nameEditText.setText(item.getName())
+            savePlayerButton.isEnabled = item.getName().length > 2
+        })
 
         // Save player and go to PlayersList
-        view.findViewById<Button>(R.id.save_player).setOnClickListener {
-            playerViewModel.selectedPlayer.value?.setName(view.findViewById<EditText>(R.id.edit_name).text.toString())
+        savePlayerButton.setOnClickListener {
+            playerViewModel.selectedPlayer.value?.setName(nameEditText.text.toString())
             playersListModel.add(playerViewModel.selectedPlayer.value ?: Player())
             findNavController().navigate(R.id.action_editPlayerFragment_to_PlayersList)
         }
+
+        // Disable save button when the name text is too short
+        nameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Empty
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                savePlayerButton.isEnabled = !(s.isNullOrBlank() || s.length <= 2)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Empty
+            }
+        })
     }
 }
