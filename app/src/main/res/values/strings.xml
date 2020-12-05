@@ -16,4 +16,5 @@
     <string name="number_player_default" translatable="false">0</string>
     <string name="header_number">N°</string>
     <string name="header_player_name">@string/player_name</string>
+    <string name="player_draw">Player draw</string>
 </resources>
