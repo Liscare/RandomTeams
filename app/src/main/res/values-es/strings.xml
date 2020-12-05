@@ -12,4 +12,5 @@
     <string name="create_player">Salvaguardar</string>
     <string name="header_number">N°</string>
     <string name="header_player_name">@string/player_name</string>
+    <string name="player_draw">Sorteo</string>
 </resources>
