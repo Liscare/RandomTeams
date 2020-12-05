@@ -15,6 +15,7 @@ import com.liscare.android.randomteams.R
 import com.liscare.android.randomteams.model.Player
 import com.liscare.android.randomteams.viewmodel.PlayerViewModel
 import com.liscare.android.randomteams.viewmodel.PlayersListViewModel
+import java.util.*
 
 /**
  * Fragment to edit a player
@@ -53,7 +54,11 @@ class EditPlayerFragment : Fragment() {
 
         // Save player and go to PlayersList
         savePlayerButton.setOnClickListener {
-            playerViewModel.selectedPlayer.value?.setName(nameEditText.text.toString())
+            playerViewModel.selectedPlayer.value?.setName(
+                nameEditText.text.toString().capitalize(
+                    Locale.getDefault()
+                )
+            )
             playersListModel.add(playerViewModel.selectedPlayer.value ?: Player())
             findNavController().navigate(R.id.action_editPlayerFragment_to_PlayersList)
         }
