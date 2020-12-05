@@ -38,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/create_player"
+        android:paddingHorizontal="@dimen/margin_sides"
+        android:paddingVertical="@dimen/margin_btn_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
